@@ -28,7 +28,7 @@ def home_template():
 
 
 
-
+# This endpoint will take the credentials for the login page and pass them to the users profile pages.
 @app.route('/auth/login', methods= ['POST'])
 def login_template():
     username = request.form['username']
@@ -42,7 +42,6 @@ def login_template():
         session = {"username": request.form['username'], "password": request.form['password']}
         session['username'] = None
 
-    #return username
 
     return render_template('profile.html', username= session['username'])
 
