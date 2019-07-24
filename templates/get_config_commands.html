@@ -1,26 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
 <form action="/commands" method="post" id="login-form">
-    <p>
-        <label>Command(s)</label>
-        <input type="text" placeholder="Enter commands" name="commands">
+    <p class="container login-page-form">
+        <label for="Commands">Commands</label>
+        <input type="text" placeholder="Enter commands" name="commands" class="form-control">
     </p>
-    <p>
+    <p class="container login-page-form">
         <label>IP Address(es)</label>
-        <input type="text" placeholder="Enter IP Adrress(es)" name="ip_address">
+        <input type="text" placeholder="Enter IP Adrress(es)" name="ip_address" class="form-control">
     </p>
-    <p>
+    <p class="container login-page-form">
         <label>Username</label>
-        <input type="text" placeholder="Enter username" name="username">
+        <input type="text" placeholder="Enter username" name="username" class="form-control">
     </p>
-    <p>
+    <p class="container login-page-form">
         <label>Password</label>
-        <input type="password" placeholder="Enter password" name="password">
+        <input type="password" placeholder="Enter password" name="password" class="form-control">
     </p>
-    <p>
+    <p class="container login-page-form">
         <label>Enable</label>
-        <input type="password" placeholder="enable Passcode" name="enable">
+        <input type="password" placeholder="enable Passcode" name="enable" class="form-control">
     </p>
-    <input type="submit">
+    <p class="container login-page-form">
+    <button type="button" class="btn btn-success">Send Commands</button>
+    </p>
 </form>
 {% endblock %}
