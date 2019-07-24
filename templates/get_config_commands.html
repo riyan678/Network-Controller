@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="/commands" method="post" id="login-form">
+    <p>
+        <label>Command(s)</label>
+        <input type="text" placeholder="Enter commands" name="commands">
+    </p>
+    <p>
+        <label>IP Address(es)</label>
+        <input type="text" placeholder="Enter IP Adrress(es)" name="ip_address">
+    </p>
+    <p>
+        <label>Username</label>
+        <input type="text" placeholder="Enter username" name="username">
+    </p>
+    <p>
+        <label>Password</label>
+        <input type="password" placeholder="Enter password" name="password">
+    </p>
+    <p>
+        <label>Enable</label>
+        <input type="password" placeholder="enable Passcode" name="enable">
+    </p>
+    <input type="submit">
+</form>
+{% endblock %}
