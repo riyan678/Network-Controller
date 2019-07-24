@@ -1,14 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
 <form id="login-form" action="/auth/login" method="post">
-    <p>
-    <input type="text" id="username" placeholder="username" name="username">
+    <p class="container login-page-form">
+        <label for="username">Username</label>
+    <input type="text" id="username" placeholder="username" name="username" class="form-control">
     </p>
-    <p>
-    <input type="password" id="password" placeholder="password" name="password">
+    <p class="container login-page-form">
+        <label for="password">Password</label>
+    <input type="password" id="password" placeholder="password" name="password" class="form-control">
     </p>
-    <p>
-    <input type="submit" id="submit-button">
+    <p class="container login-page-form">
+        <button type="button" class="btn btn-success">Log In</button>
+    <!--<input type="submit" id="submit-button">-->
     </p>
 
 </form>
