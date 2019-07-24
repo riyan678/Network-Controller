@@ -21,28 +21,47 @@ app = Flask(__name__)
 app.secret_key = "Secret_key"
 
 
-# This endpoint will render the login page to gather the users credentials
+#This is the landing page
+@app.route('/')
 @app.route('/login')
 def home_template():
-    return render_template('login.html')
+    return render_template('login_radius.html')
 
 
-
-# This endpoint will take the credentials for the login page and pass them to the users profile pages.
+# This page will take you to your profile page if login is successful
 @app.route('/auth/login', methods= ['POST'])
 def login_template():
     username = request.form['username']
     password = request.form['password']
     session = {"username": username, "password": password}
-    if radius.authenticate(username=session['username'], password=session['password'], secret='Radius_Secret_Key', 
-                           host='server_ip_or_fqdn', port=1812):
+    if radius.authenticate(username=session['username'], password=session['password'], secret='LCTCS', host='ise.lctcs.edu', port=1812):
         session = {"username": request.form['username'], "password": request.form['password']}
         session['username'] = username
     else:
         session = {"username": request.form['username'], "password": request.form['password']}
         session['username'] = None
 
-
     return render_template('profile.html', username= session['username'])
 
-app.run(debug=True)
+# This page will allow you to enter params to configure devices
+@app.route('/get/config/commands')
+def get_commands():
+    return render_template('get__config_commands.html')
+
+# This page will take param entered from '/get/config/commands' to do the work of sending the config to devices and display the results
+@app.route('/commands', methods= ['POST'])
+def return_commands():
+    address = request.form['ip_address']
+    commands = request.form['commands']
+    username = request.form['username']
+    enable = request.form['enable']
+    password = request.form['password']
+    ipAddress_list = address.split(',')
+    command_list = commands.split(',')
+    send_config(ipAddress_list, username, password, enable, command_list)
+
+    return render_template('commands.html', commands= command_list)
+
+
+if __name__ == '__main__':
+    app.run()
